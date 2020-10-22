@@ -1,6 +1,6 @@
 import os
 from flask import (
-    Flask, flash, render_template, 
+    Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -46,7 +46,7 @@ def register():
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful")
         return redirect(url_for("profile", username=session["user"]))
-        
+
     return render_template("register.html")
 
 
@@ -56,7 +56,7 @@ def login():
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        
+
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
@@ -145,7 +145,11 @@ def delete_task(task_id):
     flash("Task Successfully Deleted")
     return redirect(url_for("get_tasks"))
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 71b46b7256f3007c2f33b8f19aacc8e82c3d3e7f
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
